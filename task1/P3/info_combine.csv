@@ -1,0 +1,8 @@
+Day,Infected(lock),Infected(Unlock),Positivity Rate(Lock),Positivity Rate(Unlock)
+Monday,15552,15552,0.207,0.400
+Tuesday,21525,21525,0.117,0.303
+Wednesday,20139,20139,0.104,0.104
+Thursday,21224,21224,0.107,0.295
+Friday,19955,19955,0.114,0.264
+Saturday,20175,20175,0.144,0.220
+Sunday,22144,22144,0.144,0.298
