@@ -27,7 +27,7 @@ def sinc(x,y):
 
 def fn_plot1d(fn, x_min ,x_max ,filename):
 	x = np.linspace(x_min,x_max,num=1000)
-	plt.plot(x,map(fn,x))
+	plt.plot(x,list(map(fn,x)))
 	plt.xlabel("x")
 	plt.ylabel("b(x)")
 	plt.title("b(x) vs x plot")
