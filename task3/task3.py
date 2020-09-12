@@ -6,7 +6,7 @@ from scipy.cluster.vq import kmeans2
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--input", help="Input File")
-parser.add_argument("-k", help='Kmeans Contraints')
+parser.add_argument("--k", help='Kmeans Contraints')
 parser.add_argument("--output", help="Output File")
 args = parser.parse_args()
 
