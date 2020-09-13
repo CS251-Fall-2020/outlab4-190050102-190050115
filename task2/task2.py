@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import argparse
 
-
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--data", required=True, help="Data file")
 
@@ -26,10 +25,19 @@ for sub_inst in inst1:
         epsilon = sub_inst.epsilon.mode().values[0]
         algo = algo+" with epsilon="+str(epsilon)
 
-    sub_inst = sub_inst.groupby(['horizon']).sample(n=50)
-    sub_inst = sub_inst.groupby(['horizon']).mean()
+    sub_inst = sub_inst.groupby(['horizon']).apply(lambda x: x.reset_index(drop = True))    
+    sub_inst = sub_inst.reset_index(drop=True)
+    sub_inst = sub_inst.groupby(['horizon'], as_index=False).apply(lambda x: x.sample(n=50, random_state=1).mean())
 
-    ax = sub_inst.plot(kind='line', y='REG', logx=True, logy=True, ax=ax, label=algo)
+    ax = sub_inst.plot(kind='line', y='REG', x='horizon', loglog=True, ax=ax, label=algo)
+
+plot_margin = 0.25
+
+x0, x1, y0, y1 = plt.axis()
+plt.axis((x0 - plot_margin,
+          x1 + plot_margin,
+          y0 - plot_margin,
+          y1 + plot_margin))
 
 plt.ylabel('Regret')
 plt.title('Instance 1 - both axes in log scale')
@@ -50,9 +58,11 @@ for sub_inst in inst2:
         epsilon = sub_inst.epsilon.mode().values[0]
         algo = algo+" with epsilon="+str(epsilon)
 
-    sub_inst = sub_inst.groupby(['horizon'], as_index=False).sample(n=50)
-    sub_inst = sub_inst.groupby(['horizon'], as_index=False).mean()
-    ax = sub_inst.plot(kind='line', y='REG', logx=True, logy=True, ax=ax, label=algo)
+    sub_inst = sub_inst.groupby(['horizon']).apply(lambda x: x.reset_index(drop = True))    
+    sub_inst = sub_inst.reset_index(drop=True)
+    sub_inst = sub_inst.groupby(['horizon'], as_index=False).apply(lambda x: x.sample(n=50, random_state=1).mean())
+    
+    ax = sub_inst.plot(kind='line', y='REG', x='horizon', loglog=True, ax=ax, label=algo)
 
 plt.ylabel('Regret')
 plt.title('Instance 2 - both axes in log scale')
@@ -72,10 +82,11 @@ for sub_inst in inst3:
         epsilon = sub_inst.epsilon.mode().values[0]
         algo = algo+" with epsilon="+str(epsilon)
 
-    sub_inst = sub_inst.groupby(['horizon'], as_index=False).sample(n=50)
-    sub_inst = sub_inst.groupby(['horizon'], as_index=False).mean()
+    sub_inst = sub_inst.groupby(['horizon']).apply(lambda x: x.reset_index(drop = True))    
+    sub_inst = sub_inst.reset_index(drop=True)
+    sub_inst = sub_inst.groupby(['horizon'], as_index=False).apply(lambda x: x.sample(n=50, random_state=1).mean())
 
-    ax = sub_inst.plot(kind='line', y='REG', logx=True, logy=True, ax=ax, label=algo)
+    ax = sub_inst.plot(kind='line', y='REG', x='horizon', loglog=True, ax=ax, label=algo)
 
 plt.ylabel('Regret')
 plt.title('Instance 3 - both axes in log scale')
