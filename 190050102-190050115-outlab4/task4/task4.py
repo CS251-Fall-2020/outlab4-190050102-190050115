@@ -26,17 +26,18 @@ def sinc(x,y):
 		return np.sin(np.sqrt(x*x + y*y))/np.sqrt(x*x + y*y)
 
 def fn_plot1d(fn, x_min ,x_max ,filename):
-	x = np.linspace(x_min,x_max,num=1000)
+	x = np.linspace(x_min,x_max,num=500)
 	plt.plot(x,list(map(fn,x)))
 	plt.xlabel("x")
 	plt.ylabel("b(x)")
+	plt.grid(True)
 	plt.title("b(x) vs x plot")
 	plt.savefig(filename)
 	plt.close()
 
 def fn_plot2d(fn, x_min, x_max, y_min, y_max, filename):
-	xx = np.linspace(x_min,x_max,num=100)
-	yy = np.linspace(y_min,y_max,num=100)
+	xx = np.linspace(x_min,x_max,num=500)
+	yy = np.linspace(y_min,y_max,num=500)
 	x,y = np.meshgrid(xx,yy)
 	z = fn(x,y)
 	ax = Axes3D(plt.gcf())
@@ -49,12 +50,13 @@ def fn_plot2d(fn, x_min, x_max, y_min, y_max, filename):
 	plt.close()
 
 def nth_derivative_plotter(fn,n,xmin,xmax,filename):
-	xx = np.linspace(xmin,xmax)
+	xx = np.linspace(xmin,xmax,num=500)
 	y = [derivative(fn,x,n=n,dx=0.0001) for x in xx]
 	plt.plot(xx,y)
+	plt.grid(True)
 	plt.xlabel("x")
-	plt.ylabel("$f^%i$(x)" %n)
-	plt.title("%ith derivative plot of f(x)" %n)
+	plt.ylabel("$b^%i$(x)" %n)
+	plt.title("%ith derivative plot of b(x)" %n)
 	plt.savefig(filename)
 	plt.close()
 

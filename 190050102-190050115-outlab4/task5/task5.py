@@ -25,12 +25,12 @@ x = list(range(1,n))
 
 slope, intercept, r_value, p_value, std_err= stats.linregress(x,y)
 yline = [slope*xx + intercept for xx in x]
-
-plt.scatter(x, y, s=40, facecolors='none', edgecolors='b')
-plt.plot(x,yline,'r')
+plt.scatter(x, y, s=40, facecolors='none', edgecolors='b',label ='Data')
+plt.plot(x,yline,'r',label ='Regression line')
 plt.xlabel("t(days after 15 April)")
 plt.ylabel("H(t) = x(t)/x(t-1)")
 plt.title("H(t) vs t (Levitt's metric)")
+plt.legend()
 plt.savefig("covid.png")
 plt.close()
 
