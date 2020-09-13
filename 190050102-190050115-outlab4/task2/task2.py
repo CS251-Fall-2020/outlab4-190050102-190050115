@@ -12,8 +12,6 @@ data = data.groupby(['instance'], as_index=False)
 datas = [data.get_group(x) for x in data.groups]
 
 
-
-
 inst1 = datas[0].groupby(['algorithm', 'epsilon'], as_index=False)
 inst1 = [inst1.get_group(x) for x in inst1.groups]
 
@@ -47,7 +45,7 @@ plt.savefig('instance1.png')
 
 
 
-inst2 = datas[0].groupby(['algorithm', 'epsilon'], as_index=False)
+inst2 = datas[1].groupby(['algorithm', 'epsilon'], as_index=False)
 inst2 = [inst2.get_group(x) for x in inst2.groups]
 
 fig, ax = plt.subplots()
@@ -71,7 +69,7 @@ plt.savefig('instance2.png')
 
 
 
-inst3 = datas[0].groupby(['algorithm', 'epsilon'], as_index=False)
+inst3 = datas[2].groupby(['algorithm', 'epsilon'], as_index=False)
 inst3 = [inst3.get_group(x) for x in inst3.groups]
 
 fig, ax = plt.subplots()

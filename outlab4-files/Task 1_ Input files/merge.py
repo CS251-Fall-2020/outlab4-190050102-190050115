@@ -29,16 +29,13 @@ with open(file_unlock,'r') as f:
 day = lock[0]
 
 test_rate = ["Positivity Rate(Lock)"]
-test_rate += [ float(key)/float(lock[1][i+1]) for i, key in enumerate(lock[2][1:])]
-test_rate[1:] = np.round_(test_rate[1:], decimals=3)
+test_rate += [ f'{float(key)/float(lock[1][i+1]):.3f}' for i, key in enumerate(lock[2][1:])]
 
 tests = ["Infected(Lock)"]
 tests += [ i for i in lock[2][1:]]
 
 test_rate2 = ["Positivity Rate(UnLock)"]
-test_rate2 += [ float(key)/float(unlock[1][i+1]) for i, key in enumerate(unlock[2][1:])]
-test_rate2[1:] = np.round_(test_rate2[1:], decimals=3)
-
+test_rate2 += [ f'{float(key)/float(unlock[1][i+1]):.3f}' for i, key in enumerate(unlock[2][1:])]
 
 tests2 = ["Infected(UnLock)"]
 tests2 += [ i for i in unlock[2][1:]]

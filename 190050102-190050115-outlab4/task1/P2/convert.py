@@ -17,17 +17,21 @@ cols = ["Tests", "Infected", "Recovered", "Deceased"]
 
 out = []
 
-test_rate = ["Test Positive Rate"]
-test_rate += [ f'{float(key)/float(data[1][i+1]):.3f}' for i, key in enumerate(data[2][1:])]
+test_rate = ["Test Positivity rate"]
+test_rate += [ float(key)/float(data[1][i+1]) for i, key in enumerate(data[2][1:])]
+test_rate[1:] = np.round_(test_rate[1:], decimals=3)
+
 
 tests = ["Tests per Million"]
-tests += [ int(int(i)/20.4) for i in data[1][1:]]
+tests += [ int(i)/20.4 for i in data[1][1:]]
+tests[1:] = np.round_(tests[1:])
+tests[1:] = [int(i) for i in tests[1:]]
 
 recovered = ["Recovered"]
-recovered += [f'{float(i):.3f}' for i in data[3][1:]]
+recovered += [i for i in data[3][1:]]
 
 Deceased = ["Deceased"]
-Deceased += [f'{float(i):.3f}' for i in data[4][1:]]
+Deceased += [i for i in data[4][1:]]
 
 days = data[0]
 
