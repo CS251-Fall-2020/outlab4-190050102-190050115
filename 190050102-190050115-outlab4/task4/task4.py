@@ -26,7 +26,7 @@ def sinc(x,y):
 		return np.sin(np.sqrt(x*x + y*y))/np.sqrt(x*x + y*y)
 
 def fn_plot1d(fn, x_min ,x_max ,filename):
-	x = np.linspace(x_min,x_max,num=500)
+	x = np.linspace(x_min,x_max,num=1000)
 	plt.plot(x,list(map(fn,x)))
 	plt.xlabel("x")
 	plt.ylabel("b(x)")
@@ -36,8 +36,8 @@ def fn_plot1d(fn, x_min ,x_max ,filename):
 	plt.close()
 
 def fn_plot2d(fn, x_min, x_max, y_min, y_max, filename):
-	xx = np.linspace(x_min,x_max,num=500)
-	yy = np.linspace(y_min,y_max,num=500)
+	xx = np.linspace(x_min,x_max)
+	yy = np.linspace(y_min,y_max)
 	x,y = np.meshgrid(xx,yy)
 	z = fn(x,y)
 	ax = Axes3D(plt.gcf())
@@ -50,7 +50,7 @@ def fn_plot2d(fn, x_min, x_max, y_min, y_max, filename):
 	plt.close()
 
 def nth_derivative_plotter(fn,n,xmin,xmax,filename):
-	xx = np.linspace(xmin,xmax,num=500)
+	xx = np.linspace(xmin,xmax,num=1000)
 	y = [derivative(fn,x,n=n,dx=0.0001) for x in xx]
 	plt.plot(xx,y)
 	plt.grid(True)
